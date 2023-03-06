@@ -9,7 +9,7 @@ const Request = {
         console.log(`${api.API_URL}${url}&${queryString.stringify(parameters)}`)
         const response = await axios.get(`${api.API_URL}${url}&${queryString.stringify(parameters)}`)
         if (response && response.status === 200) {
-            return response?.data?.results || response?.data || []
+            return response?.data?.articles || response?.data || []
         }
         return []
     }

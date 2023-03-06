@@ -1,30 +1,57 @@
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native"
- 
+import { Image, ImageBackground, StyleSheet, Text, View, substring } from "react-native"
+
 const New = ({ info: { publishedAt, title, author, urlToImage, description } }) => {
     return (
         <View style={styles.container} >
-            <Text style={styles.text}>'cara'</Text>
-            <Text style={styles.text}>{title}</Text>
-            <Text style={styles.text}>{author}</Text>
+            <Image
+                style={styles.image}
+                resizeMode="cover"
+                source={{ uri: urlToImage != null ? urlToImage : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWBAMAAADOL2zRAAAAG1BMVEXMzMyWlpajo6PFxcW3t7ecnJyqqqq+vr6xsbGXmO98AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABPUlEQVRoge3Tv0/CQBjG8YcWaMcebymOENLI2MZoHMHEvVUKjq1K4lhM2Kvxx7/tUUiamDhc6GSez8INzbf3HleAiIiIiIiIiIiIiNozAGzvuJYTW2reXmso7bX8YN96HUR1a7RZ6+VVOgU+p4LuZGrSkqK0PWfwfl+3ht/hcpdvPkJ0g0fBYpYZtS7HttfPMatbAbZzJ1kjjnqVK1ihNzdpdX3b65S4qVsjXbG9EtuoEzliC/RbDFoIL7wY2NZrQayPzw1VpH/FUUqNjVrx0+9W8Rzrlt7yMMvMWq7fzHhoCTp6Rr0vw0uiH8+as69bov/AyNqf/Rms3Ky1aO7EYV93X2nlBIXg7WVSmrWs5q4eWrvVdYLbpR4/PTeZ8S9O82mdzMr7SVstV6mqrRaKh9ZSRERERERERET0n/wAZwMqI9kyPcoAAAAASUVORK5CYII=' }}
+            >
+            </Image>
+            <Text style={styles.text}>
+                <Text style={styles.capitalLetter}>{title[0]}</Text>
+                <Text numberOfLines={3} style={styles.textShadow}>{title.substring(1, 900)}{'\n'}</Text>
+                <Text numberOfLines={3} style={styles.text}>{description}</Text>
+            </Text>
+            <Text style={styles.viewMore}>View more...</Text>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "black",
-        justifyContent: "center",
-        alignItems: "center"
+        backgroundColor: "white",
+        justifyContent: "center"
     },
     image: {
-        width: 150,
-        height: 250,
+        width: 350,
+        height: 300,
         backgroundColor: "black"
     },
-    text: {
-        fontWeight: "bold",
+    text: {      
         fontSize: 18,
-        color: "black"
+        color: '#000000'
+    },
+
+    capitalLetter: {
+        fontWeight: "bold",
+        color: 'red',
+        fontSize: 30,
+        textAlign: 'left'
+    },
+    textShadow: {
+        fontWeight: "bold",
+        textShadowColor: 'red',
+        textShadowOffset: { width: 4, height: 4 },
+        textShadowRadius: 10,
+        fontSize: 18,
+    },
+    viewMore:{
+        fontSize: 18, 
+        textAlign: 'right', 
+        flex: 1,
+        color:'blue'
     }
 })
 

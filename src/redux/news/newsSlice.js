@@ -4,11 +4,11 @@ import Request from "../../services/request";
 const newsSlice = createSlice({
     name: 'news',
     initialState: {
-        latestNews: []
+        latestNews: {}
     },
     reducers: {
         clearLatestNews: (state) => {
-            state.latestNews = []
+            state.latestNews = {}
         }
     },
     extraReducers: (builder) => {
@@ -25,7 +25,7 @@ export const getLatestNews = createAsyncThunk(
         console.log('lalo 3')
         const response = await Request.getEncoded('everything?q=bitcoin')
         if (response) {
-            return response ?? []
+            return response ?? {}
         } else {
             throw 'Error fetch'
         }

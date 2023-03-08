@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { StyleSheet, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
-import NewList from "../components/NewList"
 import { getLatestNews } from "../redux/news/newsSlice"
+import NewList from "../components/NewList"
 
 const Home = () => {
   const { latestNews } = useSelector((state) => state.newsSlice)

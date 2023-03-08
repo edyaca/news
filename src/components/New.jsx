@@ -1,6 +1,20 @@
-import { Image, ImageBackground, StyleSheet, Text, View, substring } from "react-native"
+import { Image, ImageBackground, StyleSheet, Text, View, TouchableOpacity, Linking } from "react-native"
+import React, { Component } from 'react'
 
-const New = ({ info: { publishedAt, title, author, urlToImage, description } }) => {
+
+const New = ({ info: { publishedAt, title, author, urlToImage, url, description } }) => {
+    browseNews = () => {
+        console.log('katy 1')
+        console.log(`${url}`)
+        this.props.navigation.navigate(
+            'Browser',
+            { url: `${url}` }
+        )
+    }
+    newsdetail = () => {
+        console.log(`${url}`)
+        Linking.openURL(`${url}`)
+    }
     return (
         <View style={styles.container} >
             <Image
@@ -14,7 +28,9 @@ const New = ({ info: { publishedAt, title, author, urlToImage, description } }) 
                 <Text numberOfLines={3} style={styles.textShadow}>{title.substring(1, 900)}{'\n'}</Text>
                 <Text numberOfLines={3} style={styles.text}>{description}</Text>
             </Text>
-            <Text style={styles.viewMore}>View more...</Text>
+            <TouchableOpacity onPress={newsdetail} >
+                <Text style={styles.viewMore}>View more...</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -29,7 +45,7 @@ const styles = StyleSheet.create({
         height: 300,
         backgroundColor: "black"
     },
-    text: {      
+    text: {
         fontSize: 18,
         color: '#000000'
     },
@@ -47,11 +63,18 @@ const styles = StyleSheet.create({
         textShadowRadius: 10,
         fontSize: 18,
     },
-    viewMore:{
-        fontSize: 18, 
-        textAlign: 'right', 
+    viewMore: {
+        fontSize: 18,
+        textAlign: 'right',
         flex: 1,
-        color:'blue'
+        color: 'blue'
+    },
+    detail: {
+        marginTop: 28,
+        flex: 1,
+        backgroundColor: '#222',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })
 
